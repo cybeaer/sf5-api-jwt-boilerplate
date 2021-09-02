@@ -1,37 +1,81 @@
-### edit .php-version
-
-### install dependencies
+## edit .php-version
 ```
-composer install
+7.3.24
 ```
 
-### ssl passwort in .env
+## install dependencies
+```bash
+$ composer install
+```
+
+## ssl passwort in .env
 ```
 JWT_PASSPHRASE=boilderplate
 ```
 
-### generate keys
-```
-openssl genrsa -out config/jwt/private.pem -aes256 4096
-openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
-```
-
-### update database
-```
-php bin/console doctrine:schema:create
+## generate keys
+```bash
+$ openssl genrsa -out config/jwt/private.pem -aes256 4096
+$ openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 ```
 
-### enable https
-```
-symfony server:ca:install
-```
-
-### run server
-```
-symfony serve
+## update database
+```bash
+$ php bin/console doctrine:schema:create
+bzw
+$ php bin/console doctrine:database:create
+$ php bin/console doctrine:migration:migrate
 ```
 
-### run tests
+## enable https
+```bash
+$ symfony server:ca:install
 ```
-php ./vendor/bin/phpunit
+
+## run server
+```bash
+$ symfony serve
+```
+
+### https://localhost/register
+Method: 
+- Post
+
+Header: 
+- Content-Type: application/json
+
+Body:
+```json
+{
+"username": "Mike",
+"password": "asdf",
+"email": "me@local"
+}
+```
+
+### https://localhost/api/login_check
+Method: 
+- Post
+
+Header: 
+- Content-Type: application/json
+
+Body:
+```json
+{
+"username": "Mike",
+"password": "asdf"
+}
+```
+
+### https://localhost/api/posts
+Method: 
+- Add, Del, Put, Get, usw..
+
+Header: 
+- Content-Type: application/json
+- Auhtorization: Bearer < Token >
+## run tests
+```bash
+$ php bin/phpunit
 ```
