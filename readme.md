@@ -1,3 +1,6 @@
+# sf5-api-jwt-boilerplate
+modified version from: https://h-benkachoud.medium.com/symfony-rest-api-without-fosrestbundle-using-jwt-authentication-part-2-be394d0924dd
+
 ## edit .php-version
 ```
 7.3.24
